@@ -1,3 +1,8 @@
+#
+# Implement a stack with get_largest element method
+#
+
+
 class Node:
     def __init__(self, val, next_node, largest):
         self.val = val
@@ -9,6 +14,19 @@ class Stack:
     def __init__(self):
         self.head = None
         self.length = 0
+
+    def __str__(self):
+        result = []
+        cur = self.head
+        while cur:
+            if cur.next_node:
+                result.extend([str(cur.val), '->'])
+            else:
+                result.append(str(cur.val))
+
+            cur = cur.next_node
+
+        return ' '.join(result)
 
     def push(self, val):
         if not self.head:
@@ -35,26 +53,12 @@ class Stack:
         self.head = None
         self.length = 0
 
-    def __str__(self):
-        result = []
-        cur = self.head
-        while cur:
-            if cur.next_node:
-                result.extend([str(cur.val), '->'])
-            else:
-                result.append(str(cur.val))
-
-            cur = cur.next_node
-
-        return ' '.join(result)
-
     def get_largest(self):
         if not self.head:
             return None
         
         return self.head.largest
 
-        
 
 if __name__ == '__main__':
     stack = Stack()
@@ -74,13 +78,4 @@ if __name__ == '__main__':
     stack.push(22)
     assert stack.get_largest() == 22
     assert stack.length == 3
-    
-
-    
-    
-    
-    
-    
-
-
     
